@@ -1,15 +1,29 @@
 import React, { useState } from 'react';
-import FetchLineData from './FetchLineData';
+import FetchLineRoutes from './FetchLineRoutes';
+
+
 
 
 const LineModeSelect = ({lineData}) => {
     
-    console.log(lineData);
+    console.log('lineData', lineData);
+    const [select, setSelect] = useState('');
+    const handleSelect = (event) => {
+        setSelect(event.target.value);
+    }
+    
     return (<div>
-        {lineData.map((tubeLines) => {
-            console.log(tubeLines.id)
-        })}
-        
+        <select onChange={(e) => handleSelect(e)}>
+            {lineData.map((line) => (
+                <option value={line.id} key={line.id}>
+                    {line.id}
+                </option>
+            ))}
+            
+        </select>
+        <h4>You have selected:{select}</h4>
+        <FetchLineRoutes selectedLine={select} />
+           
     </div> );
 }
  

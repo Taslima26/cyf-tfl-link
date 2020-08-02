@@ -1,15 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import FetchLineData from './FetchLineData';
 const TransportModeSelect = ({displayData}) => {
+  console.log('from transportselectbox');
   const [change, handleChange] = useState('bus');
   const handleSelect = (e) => {
     console.log(e);
-    handleChange(e);
+    handleChange(e.currentTarget.value);
   };
 
   return (
     <div>
-      <select onChange={(e) => handleChange(e.currentTarget.value)}>
+      <select onChange={(e) => handleSelect(e)}>
         {displayData.map((transportMode) => (
           <option value={transportMode.modeName} key={transportMode.value}>
             {transportMode.modeName}
